@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-image: url(https://res.cloudinary.com/dd35whspd/image/upload/v1699000759/samples/cup-on-a-table.jpg);
+    background-size: cover;
+    padding: 140px;
+    
+}
+
+h1 {
+    color: rgb(130, 243, 243);
+    text-shadow: 2px 2px 4px #000000;
+    
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+
+}
+
+.para{
+    margin: 20px;
+    font-size: 18px;
+    text-shadow: 4px 4px 8px #000000;
+    color: #dcd21d;
+}

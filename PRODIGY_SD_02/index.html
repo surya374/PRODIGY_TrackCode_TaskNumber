@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>NUMBER GUESSING GAME</h1>
+    <p class="para">Guess  a Number from 1 to 100</p>
+    <input type="number" id="guessInput" placeholder="Enter Your Guess">
+    <div>
+        <button onclick="checkGuess()">Submit</button>
+    </div>
+    <p id="feedback"></p>
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+        function checkGuess(){
+            const userGuess = parseInt(document.getElementById('guessInput').value);
+            if (!isNaN(userGuess)) {
+                attempts++ ;
+
+                if (userGuess === randomNumber) {
+                    document.getElementById('feedback').innerHTML =` 
+                     Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts.` ;
+                } else if (userGuess < randomNumber) {
+                    document.getElementById('feedback').innerHTML =  'Too low! Try Again.';  
+                
+                }else {
+                    document.getElementById('feedback').innerHTML = 'Too High! Try Again.';
+                }
+            } else {
+                document.getElementById('feedback').innerHTML = 'Please enter a valid number.';
+            }
+        }
+    </script>
+</body>
+</html>
