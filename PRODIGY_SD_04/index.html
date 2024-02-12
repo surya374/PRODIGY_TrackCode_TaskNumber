@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+        }
+        #sudokuBoard {
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #sudokuBoard td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ccc;
+            font-size: 18px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sudoku Solver</h1>
+    <table id="sudokuBoard"></table>
+    <button onclick="solveSudoku()">Solve</button>
+
+    <script>
+        let board = [
+            [5, 3, 0, 0, 7, 0, 0, 0, 0],
+            [6, 0, 0, 1, 9, 5, 0, 0, 0],
+            [0, 9, 8, 0, 0, 0, 0, 6, 0],
+            [8, 0, 0, 0, 6, 0, 0, 0, 3],
+            [4, 0, 0, 8, 0, 3, 0, 0, 1],
+            [7, 0, 0, 0, 2, 0, 0, 0, 6],
+            [0, 6, 0, 0, 0, 0, 2, 8, 0],
+            [0, 0, 0, 4, 1, 9, 0, 0, 5],
+            [0, 0, 0, 0, 8, 0, 0, 7, 9]
+        ];
+
+        function solveSudoku() {
+            if (solve()) {
+                displayBoard();
+            } else {
+                alert("No solution exists!");
+            }
+        }
+
+        function solve() {
+            for (let row = 0; row < 9; row++) {
+                for (let col = 0; col < 9; col++) {
+                    if (board[row][col] === 0) {
+                        for (let num = 1; num <= 9; num++) {
+                            if (isValid(row, col, num)) {
+                                board[row][col] = num;
+                                if (solve()) {
+                                    return true;
+                                }
+                                board[row][col] = 0;
+                            }
+                        }
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function isValid(row, col, num) {
+            for (let i = 0; i < 9; i++) {
+                if (board[row][i] === num || board[i][col] === num) {
+                    return false;
+                }
+            }
+            const startRow = Math.floor(row / 3) * 3;
+            const startCol = Math.floor(col / 3) * 3;
+            for (let i = startRow; i < startRow + 3; i++) {
+                for (let j = startCol; j < startCol + 3; j++) {
+                    if (board[i][j] === num) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function displayBoard() {
+            const table = document.getElementById("sudokuBoard");
+            table.innerHTML = "";
+            for (let i = 0; i < 9; i++) {
+                const row = table.insertRow();
+                for (let j = 0; j < 9; j++) {
+                    const cell = row.insertCell();
+                    cell.textContent = board[i][j];
+                }
+            }
+        }
+
+        displayBoard();
+    </script>
+</body>
+</html>
