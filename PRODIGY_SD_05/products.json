@@ -1,0 +1,18 @@
+[
+    {
+      "name": "Product 1",
+      "price": "$10",
+      "rating": "4.5"
+    },
+    {
+      "name": "Product 2",
+      "price": "$20",
+      "rating": "3.8"
+    },
+    {
+      "name": "Product 3",
+      "price": "$15",
+      "rating": "4.2"
+    }
+  ]
+  
